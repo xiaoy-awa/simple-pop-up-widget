@@ -1,3 +1,16 @@
+<div align="center">
+
+# AlertJS - 现代化弹窗通知组件
+
+一个功能丰富的轻量级弹窗通知库，支持多种类型的通知、主题切换和交互功能
+
+[![GitHub](https://img.shields.io/badge/GitHub-仓库-181717?style=for-the-badge&logo=github)](https://github.com/xiaoy-awa/simple-pop-up-widget)
+[![Gitee](https://img.shields.io/badge/Gitee-仓库-C71D23?style=for-the-badge&logo=gitee)](https://gitee.com/xiaoy_awa/simple-pop-up-widget)
+[![GitCode](https://img.shields.io/badge/GitCode-仓库-4078c0?style=for-the-badge&logo=git)](https://gitcode.com/xiaoy_awa/simple-pop-up-widget)
+[![极狐GitLab](https://img.shields.io/badge/JihuLab-仓库-FC6D26?style=for-the-badge&logo=gitlab)](https://jihulab.com/xiaoyteam/simple-pop-up-widget)
+
+</div>
+
 # 高级弹窗组件文档
 
 这是一个功能丰富的弹窗通知组件，支持多种类型的弹窗，包括成功、错误、警告、公告以及输入弹窗。该组件提供了丰富的自定义选项，并支持深色/浅色主题切换。
