@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-仓库-181717?style=for-the-badge&logo=github)](https://github.com/xiaoy-awa/simple-pop-up-widget)
 [![Gitee](https://img.shields.io/badge/Gitee-仓库-C71D23?style=for-the-badge&logo=gitee)](https://gitee.com/xiaoy_awa/simple-pop-up-widget)
 [![GitCode](https://img.shields.io/badge/GitCode-仓库-4078c0?style=for-the-badge&logo=git)](https://gitcode.com/xiaoy_awa/simple-pop-up-widget)
-[![极狐GitLab](https://img.shields.io/badge/JihuLab-仓库-FC6D26?style=for-the-badge&logo=gitlab)](https://jihulab.com/xiaoyteam/simple-pop-up-widget)
+[![极狐GitLab](https://img.shields.io/badge/JihuLab-仓库-FC6D26?style=for-the-badge&logo=gitlab)](https://jihulab.com/Xiaoy_awa/simple-pop-up-widget)
 
 </div>
 
