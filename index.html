@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗示例</title>
+    <link rel="stylesheet" href="alert.css">
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .success-btn {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .success-btn:hover {
+            background-color: #059669;
+        }
+        
+        .error-btn {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .error-btn:hover {
+            background-color: #dc2626;
+        }
+        
+        .custom-btn {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .custom-btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .toggle-theme {
+            background-color: #6b7280;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .toggle-theme:hover {
+            background-color: #4b5563;
+        }
+        
+        .dark-mode {
+            background-color: #1f2937;
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .container {
+            background-color: #111827;
+            color: #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode h1 {
+            color: #e5e7eb;
+        }
+        
+        .code-block {
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .dark-mode .code-block {
+            background-color: #374151;
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        /* 自定义输入区域样式 */
+        .custom-input-section {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .dark-mode .custom-input-section {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #d1d5db;
+            font-size: 16px;
+            background-color: white;
+        }
+        
+        .dark-mode .input-group input,
+        .dark-mode .input-group select {
+            background-color: #111827;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+        
+        .input-group select {
+            cursor: pointer;
+        }
+        
+        .show-custom-btn {
+            background-color: #8b5cf6;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .show-custom-btn:hover {
+            background-color: #7c3aed;
+        }
+        
+        /* 添加主题切换按钮样式 */
+        .theme-toggles {
+            margin-top: 40px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .dark-mode .theme-toggles {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+        
+        .toggle-buttons {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .toggle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toggle-label {
+            font-size: 14px;
+            color: #4b5563;
+        }
+        
+        .dark-mode .toggle-label {
+            color: #9ca3af;
+        }
+        
+        .theme-toggle-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background-color: #f3f4f6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .theme-toggle-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .dark-mode .theme-toggle-btn {
+            background-color: #374151;
+        }
+        
+        .sun-moon-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .sun-rays {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fbbf24;
+            top: 0;
+            left: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .sun-rays::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow:
+                0 0 0 4px #fbbf24,
+                -10px -10px 0 -4px #fbbf24,
+                10px -10px 0 -4px #fbbf24,
+                10px 10px 0 -4px #fbbf24,
+                -10px 10px 0 -4px #fbbf24,
+                -14px 0 0 -3px #fbbf24,
+                14px 0 0 -3px #fbbf24,
+                0 -14px 0 -3px #fbbf24,
+                0 14px 0 -3px #fbbf24;
+            transition: all 0.5s ease;
+        }
+        
+        .moon-crater {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #94a3b8;
+            top: 2px;
+            left: 2px;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+        
+        .moon-crater::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #334155;
+            top: 3px;
+            left: 10px;
+        }
+        
+        .moon-crater::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #334155;
+            top: 12px;
+            left: 5px;
+        }
+        
+        .dark-mode .sun-rays {
+            transform: scale(0);
+        }
+        
+        .dark-mode .moon-crater {
+            transform: scale(1);
+        }
+        
+        /* 渐变动画类 */
+        .theme-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99999999;
+        }
+        
+        .animation-options {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .dark-mode .animation-options {
+            border-top-color: #374151;
+        }
+        
+        .animation-options h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #4b5563;
+        }
+        
+        .dark-mode .animation-options h3 {
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>弹窗组件示例</h1>
+        
+        <div class="button-group">
+            <button class="success-btn" onclick="showAlert('操作成功完成！', 'success')">显示成功弹窗</button>
+            <button class="error-btn" onclick="showAlert('操作失败，请重试！', 'error')">显示错误弹窗</button>
+            <button class="custom-btn" onclick="showCustomAlert()">显示自定义弹窗</button>
+            <button class="custom-btn" style="background-color: #6366f1;" onclick="showLongTextAlert()">测试长文本弹窗</button>
+            <button class="warning-btn" style="background-color: #eab308; color: white;" onclick="showAlert('请注意，此操作需要谨慎！', 'warning')">显示警告弹窗</button>
+            <button class="announcement-btn" style="background-color: #2563eb; color: white;" onclick="showAlert('欢迎使用本系统，有新功能上线！', 'announcement')">显示公告弹窗</button>
+            <button class="input-btn" style="background-color: #10b981; color: white;" onclick="showInputAlert('请输入内容', '在此处输入...', {onConfirm: function(text) { showAlert('您输入了: ' + text, 'success'); }})">普通输入弹窗</button>
+            <button class="input-btn" style="background-color: #059669; color: white;" onclick="showInputAlert('必填内容', '此处必须输入内容...', {required: true, onConfirm: function(text) { showAlert('您输入了: ' + text, 'success'); }})">必填输入弹窗</button>
+        </div>
+        
+        <!-- 新增自定义输入区域 -->
+        <div class="custom-input-section">
+            <h2>自定义弹窗内容</h2>
+            <div class="input-group">
+                <label for="custom-message">弹窗消息内容：</label>
+                <input type="text" id="custom-message" placeholder="请输入弹窗显示的消息内容">
+            </div>
+            <div class="input-group">
+                <label for="custom-type">弹窗类型：</label>
+                <select id="custom-type">
+                    <option value="success">成功提示</option>
+                    <option value="error">错误提示</option>
+                    <option value="warning">警告提示</option>
+                </select>
+            </div>
+            <button class="show-custom-btn" onclick="showUserCustomAlert()">显示自定义内容弹窗</button>
+        </div>
+        
+<!-- 新增输入弹窗自定义区域 -->
+<div class="custom-input-section">
+    <h2>自定义输入弹窗</h2>
+    <div class="input-group">
+        <label for="input-title">弹窗标题：</label>
+        <input type="text" id="input-title" placeholder="请输入弹窗标题">
+    </div>
+    <div class="input-group">
+        <label for="input-placeholder">输入框占位文本：</label>
+        <input type="text" id="input-placeholder" placeholder="请输入占位文本">
+    </div>
+    <div class="input-group">
+        <label>
+            <input type="checkbox" id="input-required">
+            是否必填（必填时无法点击背景关闭）
+        </label>
+    </div>
+    <div class="input-group">
+        <label>
+            <input type="checkbox" id="input-show-close" checked>
+            显示关闭按钮（必填时无效）
+        </label>
+    </div>
+    <div class="input-group">
+        <label>
+            <input type="checkbox" id="input-clear-pinned">
+            清除固定弹窗（否则输入弹窗会显示在固定弹窗上方）
+        </label>
+    </div>
+    <button class="show-custom-btn" onclick="showCustomInputAlert()">显示自定义输入弹窗</button>
+</div>
+        
+        <h2>使用方法</h2>
+        <div class="code-block">
+            <pre>// 显示成功弹窗
+showAlert('操作成功完成！', 'success');
+
+// 显示错误弹窗
+showAlert('操作失败，请重试！', 'error');
+
+// 显示警告弹窗
+showAlert('请注意，此操作需要谨慎！', 'warning');
+
+// 显示公告弹窗
+showAlert('欢迎使用本系统，有新功能上线！', 'announcement');
+
+// 自定义按钮显示
+showAlert('只显示关闭按钮', 'success', {showCloseButton: true, showPinButton: false});
+
+// 显示输入弹窗
+showInputAlert('标题', '请输入内容...', {
+  onConfirm: function(text) { console.log('确认输入:', text); },
+  onCancel: function() { console.log('取消输入'); }
+});
+
+// 显示必填输入弹窗
+showInputAlert('标题', '请输入内容...', {
+  required: true,
+  onConfirm: function(text) { console.log('确认输入:', text); }
+});
+
+// 显示输入弹窗并清除固定弹窗
+showInputAlert('重要输入', '请输入内容...', {
+  clearPinnedAlerts: true,
+  onConfirm: function(text) { console.log('确认输入:', text); }
+});</pre>
+        </div>
+        
+        <h2>函数参数</h2>
+        <ul>
+            <li><strong>showAlert</strong>
+                <ul>
+                    <li><strong>message</strong>: 弹窗显示的消息内容，默认为"操作失败，请重试"</li>
+                    <li><strong>type</strong>: 弹窗类型，可以是"error"、"success"、"warning"或"announcement"，默认为"error"</li>
+                    <li><strong>options</strong>: 选项对象，包含以下属性:
+                        <ul>
+                            <li><strong>showCloseButton</strong>: 是否显示关闭按钮，默认为true</li>
+                            <li><strong>showPinButton</strong>: 是否显示固定按钮，默认为true</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>showInputAlert</strong>
+                <ul>
+                    <li><strong>title</strong>: 弹窗标题，默认为"标题"</li>
+                    <li><strong>placeholder</strong>: 输入框占位文本，默认为"请输入文字..."</li>
+                    <li><strong>options</strong>: 选项对象，包含以下属性:
+                        <ul>
+                            <li><strong>required</strong>: 是否必须输入，默认为false</li>
+                            <li><strong>showCloseButton</strong>: 是否显示关闭按钮，默认与required相反</li>
+                            <li><strong>clearPinnedAlerts</strong>: 是否清除固定的弹窗，默认为false</li>
+                            <li><strong>onConfirm</strong>: 确认按钮回调函数，参数为输入的文本</li>
+                            <li><strong>onCancel</strong>: 取消按钮回调函数</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <button class="toggle-theme" onclick="toggleTheme()">切换深色/浅色模式</button>
+    </div>
+    
+    <script src="alert.js"></script>
+    <script>
+        // 自定义弹窗示例
+        function showCustomAlert() {
+            const messages = [
+                { text: '数据加载成功！', type: 'success' },
+                { text: '用户信息已更新', type: 'success' },
+                { text: '网络连接错误', type: 'error' },
+                { text: '请先登录后再操作', type: 'error' },
+                { text: '文件上传成功', type: 'success' }
+            ];
+            
+            // 随机选择一个消息
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            showAlert(randomMessage.text, randomMessage.type);
+        }
+        
+        // 显示用户自定义内容弹窗
+        function showUserCustomAlert() {
+            const messageInput = document.getElementById('custom-message');
+            const typeSelect = document.getElementById('custom-type');
+            
+            let message = messageInput.value.trim();
+            const type = typeSelect.value;
+            
+            // 如果用户没有输入内容，使用默认消息
+            if (!message) {
+                if (type === 'success') {
+                    message = '操作成功完成！';
+                } else {
+                    message = '操作失败，请重试！';
+                }
+            }
+            
+            showAlert(message, type);
+            
+            // 清空输入框
+            messageInput.value = '';
+        }
+        
+        // 测试长文本弹窗
+        function showLongTextAlert() {
+            const longText = "这是一段非常长的文本，用于测试弹窗在遇到大量文字时的自动换行效果。当文本内容超过一定长度时，应该能够自动换行显示，而不是导致弹窗过宽或文本溢出。这样可以确保用户体验更好，同时保持界面的美观。这段文本足够长，可以测试弹窗的自动换行功能是否正常工作。现在弹窗的宽度已经设置得更窄，文本应该会在更短的长度处换行。";
+            const type = Math.random() > 0.5 ? "success" : "error";
+            showAlert(longText, type);
+        }
+        
+        // 显示自定义输入弹窗
+        function showCustomInputAlert() {
+            const titleInput = document.getElementById('input-title');
+            const placeholderInput = document.getElementById('input-placeholder');
+            const requiredCheckbox = document.getElementById('input-required');
+            const showCloseCheckbox = document.getElementById('input-show-close');
+            
+            const title = titleInput.value.trim() || "请输入";
+            const placeholder = placeholderInput.value.trim() || "请在此处输入内容...";
+            const isRequired = requiredCheckbox.checked;
+            const showCloseButton = showCloseCheckbox.checked;
+            
+            showInputAlert(title, placeholder, {
+                required: isRequired,
+                showCloseButton: isRequired ? false : showCloseButton, // 必填时强制不显示关闭按钮
+                onConfirm: function(text) {
+                    showAlert(`您输入了: ${text}`, 'success');
+                },
+                onCancel: function() {
+                    showAlert('您取消了输入', 'error');
+                }
+            });
+        }
+        
+        // 切换深色/浅色模式
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
